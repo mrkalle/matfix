@@ -34,6 +34,14 @@ const store = new Vuex.Store({
     getCartProductCount: (state) => (productId) => {
       return state.cartProducts.filter(x => x.productId === productId).length;
     },
+    getAllCartProductsCount: (state) => {
+      var totalNrOfProducts = 0;
+      for (var i = 0; i < state.cartProducts.length; i++) {
+        totalNrOfProducts += state.cartProducts[i].nr;
+      } 
+
+      return totalNrOfProducts;
+    },
     getCartProductPrice: (state) => (productId) => {
       var item = state.cartProducts.filter(x => x.productId === productId)[0];
       return item.nr * item.productPrice;
