@@ -60,6 +60,9 @@ const store = new Vuex.Store({
       } else {
         Vue.set(existingCartProducts[0], 'nr', existingCartProducts[0].nr + 1)
       }
+    },
+    clearCart (state) {
+      state.cartProducts.splice(0, state.cartProducts.length);
     }
   }
 })
