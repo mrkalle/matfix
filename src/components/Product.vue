@@ -1,25 +1,28 @@
 <template>
-  <md-card class="product">
-    <md-card-header>
-      <div class="md-title">{{product.name}}</div>
-    </md-card-header>
+  <div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <md-card class="product">
+      <md-card-header>
+        <div class="md-title">{{product.name}}</div>
+      </md-card-header>
 
-    <md-card-media>
-      <md-ripple>
-        <img :src="product.picUrl">
-      </md-ripple>
-    </md-card-media>
+      <md-card-media>
+        <md-ripple>
+          <img :src="product.picUrl">
+        </md-ripple>
+      </md-card-media>
 
-    <md-card-content>
-      Pris: {{product.price}}kr
-    </md-card-content>
+      <md-card-content>
+        Pris: {{product.price}}kr
+      </md-card-content>
 
-    <md-card-actions>
-      <md-button class="md-icon-button md-primary" v-on:click="addProductToCart" >
-        <md-icon>add</md-icon>
-      </md-button>
-    </md-card-actions>
-  </md-card>
+      <md-card-actions>
+        <md-button class="md-icon-button md-primary" v-on:click="addProductToCart" >
+          <md-icon class="fa fa-cart-plus"></md-icon>
+        </md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
 </template>
 
 <script>

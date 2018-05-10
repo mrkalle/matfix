@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="md-layout md-gutter">
-      <div class="md-layout-item md-large-size-33 md-medium-size-33 md-small-size-50 md-xsmall-size-100" v-for="product in getProducts" :key="product.productId">
+      <div class="md-layout-item md-large-size-25 md-medium-size-33 md-small-size-50 md-xsmall-size-100" v-for="product in getProducts" :key="product.productId">
         <product v-bind:product="product" v-bind:key="product.productId"></product>
       </div>
      </div>

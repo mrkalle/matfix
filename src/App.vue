@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <md-tabs md-alignment="centered">
+    <md-tabs class="md-primary" md-alignment="centered">
       <template slot="md-tab" slot-scope="{ tab }">
         {{ tab.label }} <i class="badge" v-if="tab.data.badge">{{ tab.data.badge }}</i>
       </template>
@@ -42,7 +42,6 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
   }
 
   html {
@@ -68,5 +67,11 @@ export default {
     font-weight: 600;
     letter-spacing: -.05em;
     font-family: 'Roboto Mono', monospace;
+  }
+</style>
+
+<style lang="scss" scoped>
+  .md-tabs + .md-tabs {
+    margin-top: 24px;
   }
 </style>
