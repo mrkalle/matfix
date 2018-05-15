@@ -1,0 +1,23 @@
+{
+  "name": "matfixbackend",
+  "version": "1.0.0",
+  "description": "Backend for matfix client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrkalle/matfixbackend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrkalle/matfixbackend/issues"
+  },
+  "homepage": "https://github.com/mrkalle/matfixbackend#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3"
+  }
+}

@@ -6,13 +6,13 @@
         <div v-for="cartProduct in getCartProducts" :key="cartProduct.productId">
           <cart-product v-bind:cart-product="cartProduct" v-bind:key="cartProduct.productId"></cart-product>
         </div>
-        <p v-if="getCartProductsCount > 0">Totalsumma: {{ getCartTotal }}</p>
+        <p v-if="getCartProductsCount > 0">Totalsumma: {{ getCartTotal }}kr</p>
         <md-button v-if="getCartProductsCount > 0" class="md-primary md-raised" @click="activePayDialog = true">Betala</md-button>
       </div>
     </div>
     <div>
       <md-dialog
-        :md-active.sync="activePayDialog" md-fullscreen="false" md-click-outside-to-close="false">
+        :md-active.sync="activePayDialog" md-fullscreen="false">
 
         <md-dialog-title>Betalning</md-dialog-title>
         
@@ -35,8 +35,7 @@
         </md-dialog-actions>  
 
       </md-dialog>
-    </div>        
-
+    </div>
   </div>
 </template>
 
@@ -75,11 +74,12 @@ export default {
       return total;
     },
     noProducts () {
-      return this.$store.getters.getCartProductsCount === 0; // TODO: fixa så kan kalla getCartProductsCount härifrån..
+      return this.$store.getters.getCartProductsCount === 0;
     }
   },
   components: {CartProduct}
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

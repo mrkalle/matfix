@@ -42,6 +42,11 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    min-height: 100vh;
+  }
+  
+  .md-content {
+    min-height: 100vh;
   }
 
   html {
@@ -70,8 +75,8 @@ export default {
   }
 </style>
 
-<style lang="scss" scoped>
+<!--<style lang="scss" scoped>
   .md-tabs + .md-tabs {
-    margin-top: 24px;
+    margin-top: 60px;
   }
-</style>
+</style>-->

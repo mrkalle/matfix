@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <div class="md-layout md-gutter">
-      <div class="md-layout-item md-large-size-25 md-medium-size-33 md-small-size-50 md-xsmall-size-100" v-for="product in getProducts" :key="product.productId">
-        <product v-bind:product="product" v-bind:key="product.productId"></product>
-      </div>
-     </div>
+  <div class="md-layout md-gutter">
+    <div class="md-layout-item md-large-size-25 md-medium-size-33 md-small-size-50 md-xsmall-size-100" v-for="product in getProducts" :key="product.productId">
+      <product v-bind:product="product" v-bind:key="product.productId"></product>
+    </div>
   </div>
 </template>
 
@@ -23,19 +21,11 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-</style>
-
 <style lang="scss" scoped>
   @import "~vue-material/src/components/MdAnimation/variables.scss";
   @import "~vue-material/src/theme/engine";
 
   .md-layout-item {
-    
     margin-top: 8px;
     margin-bottom: 8px;
     transition: .3s $md-transition-stand-timing;
@@ -44,7 +34,6 @@ h1, h2 {
       width: 100%;
       height: 100%;
       display: block;
-      /*background: md-get-palette-color(purple, 200);*/
       content: " ";
     }
   }

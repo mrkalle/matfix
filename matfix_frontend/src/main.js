@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import 'es6-promise/auto'
+import axios from 'axios'
 import Vuex from 'vuex'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
@@ -14,7 +15,9 @@ Vue.use(VueMaterial)
 const store = new Vuex.Store({
   state: {
     products: [
-        {productId: 0, name: "Cocacola", price: 10, picUrl: "../static/cocacola.png" },
+    // Hämta från backend, localhost:3000/products
+    
+        /*{productId: 12, name: "Cocacola", price: 10, picUrl: "../static/cocacola.png" },
         {productId: 1, name: "Ramlösa", price: 10, picUrl: "../static/ramlosa.png"},
         {productId: 2, name: "Fanta", price: 12, picUrl: "../static/fanta.png"},
         {productId: 3, name: "Ahlgrens bilar", price: 20, picUrl: "../static/bilar.png"},
@@ -23,7 +26,7 @@ const store = new Vuex.Store({
         {productId: 6, name: "Snickers", price: 10, picUrl: "../static/snickers.png"},
         {productId: 7, name: "Felix Gulasch", price: 29, picUrl: "../static/felix_gulasch.png"},
         {productId: 8, name: "Felix Coconut", price: 35, picUrl: "../static/felix_coconut_bean_curry.png"},
-        {productId: 9, name: "Felix Soppa", price: 30, picUrl: "../static/felix_potatis_purjolok.png"}
+        {productId: 9, name: "Felix Soppa", price: 30, picUrl: "../static/felix_potatis_purjolok.png"}*/
       ],
     cartProducts: []
   },
@@ -61,10 +64,28 @@ const store = new Vuex.Store({
         Vue.set(existingCartProducts[0], 'nr', existingCartProducts[0].nr + 1)
       }
     },
+    addProductsToCart(state, payload) {
+      var dataObj = {productId: payload.productId, name: payload.name, price: payload.price, picUrl: payload.picUrl};
+      state.products.push(dataObj);
+    },
     clearCart (state) {
       state.cartProducts.splice(0, state.cartProducts.length);
     }
-  }
+  },
+  actions: {
+	  fetchProducts (state) {
+      axios.get('http://localhost:3000/products')
+      .then(response => {
+        for (var i = 0; i < response.data.length; i++) {
+          state.commit("addProductsToCart", response.data[i]);
+        }
+      })
+      .catch(e => {
+        debugger;
+        console.error("fetchProducts, error: " + e);
+      });
+	  }	  
+  }  
 })
 
 /* eslint-disable no-new */
@@ -72,5 +93,8 @@ new Vue({
   el: '#app',
   store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  mounted: function() {
+	  store.dispatch('fetchProducts');
+  }
 })
