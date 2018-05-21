@@ -14,20 +14,7 @@ Vue.use(VueMaterial)
 
 const store = new Vuex.Store({
   state: {
-    products: [
-    // Hämta från backend, localhost:3000/products
-    
-        /*{productId: 12, name: "Cocacola", price: 10, picUrl: "../static/cocacola.png" },
-        {productId: 1, name: "Ramlösa", price: 10, picUrl: "../static/ramlosa.png"},
-        {productId: 2, name: "Fanta", price: 12, picUrl: "../static/fanta.png"},
-        {productId: 3, name: "Ahlgrens bilar", price: 20, picUrl: "../static/bilar.png"},
-        {productId: 4, name: "Geléhallon", price: 11, picUrl: "../static/gelehallon.png"},
-        {productId: 5, name: "Schweizernöt", price: 16, picUrl: "../static/schweizernot.png"},
-        {productId: 6, name: "Snickers", price: 10, picUrl: "../static/snickers.png"},
-        {productId: 7, name: "Felix Gulasch", price: 29, picUrl: "../static/felix_gulasch.png"},
-        {productId: 8, name: "Felix Coconut", price: 35, picUrl: "../static/felix_coconut_bean_curry.png"},
-        {productId: 9, name: "Felix Soppa", price: 30, picUrl: "../static/felix_potatis_purjolok.png"}*/
-      ],
+    products: [],
     cartProducts: []
   },
   getters: {
@@ -74,7 +61,7 @@ const store = new Vuex.Store({
   },
   actions: {
 	  fetchProducts (state) {
-      axios.get('http://localhost:3000/products')
+      axios.get('https://matfix.carllundin.se/products')
       .then(response => {
         for (var i = 0; i < response.data.length; i++) {
           state.commit("addProductsToCart", response.data[i]);
@@ -84,8 +71,8 @@ const store = new Vuex.Store({
         debugger;
         console.error("fetchProducts, error: " + e);
       });
-	  }	  
-  }  
+	  }
+  }
 })
 
 /* eslint-disable no-new */
