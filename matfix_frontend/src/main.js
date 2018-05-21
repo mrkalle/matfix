@@ -61,7 +61,7 @@ const store = new Vuex.Store({
   },
   actions: {
 	  fetchProducts (state) {
-      axios.get('http://localhost:3030/products')
+      axios.get('https://matfix.carllundin.se/products')
       .then(response => {
         for (var i = 0; i < response.data.length; i++) {
           state.commit("addProductsToCart", response.data[i]);
@@ -71,8 +71,8 @@ const store = new Vuex.Store({
         debugger;
         console.error("fetchProducts, error: " + e);
       });
-	  }	  
-  }  
+	  }
+  }
 })
 
 /* eslint-disable no-new */

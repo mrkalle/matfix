@@ -1,12 +1,16 @@
 const express = require('express')
-var cors = require('cors')
+//var cors = require('cors')
 const app = express()
 const swishQr = require('swish-qr');
 
-app.use(cors())
+//app.use(cors())
+
+app.get('/', (req,res) => {
+	console.log("root called");
+})
 
 app.get('/products', (req, res) => {
-	console.log("products called");
+    //console.log("products called");
     var data = 
         [{productId: 0, name: "Cocacola", price: 10, picUrl: "../static/cocacola.png" },
         {productId: 1, name: "Ramlösa", price: 10, picUrl: "../static/ramlosa.png"},
@@ -19,7 +23,6 @@ app.get('/products', (req, res) => {
         {productId: 8, name: "Felix Coconut", price: 35, picUrl: "../static/felix_coconut_bean_curry.png"},
         {productId: 9, name: "Felix Soppa", price: 30, picUrl: "../static/felix_potatis_purjolok.png"}];
     res.json(data);
-});
 
 app.get('/createqrcode', (req, res) => {
     console.log("createqrcode called");
@@ -47,4 +50,4 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.listen(3030, () => console.log('Matfix backend listening on port 3030!'))
+app.listen(3030, () => { console.log('Matfix backend listening on port 3030!')});
