@@ -1,6 +1,7 @@
 const express = require('express')
 var cors = require('cors')
 const app = express()
+const swishQr = require('swish-qr');
 
 app.use(cors())
 
@@ -20,10 +21,30 @@ app.get('/products', (req, res) => {
     res.json(data);
 });
 
+app.get('/createqrcode', (req, res) => {
+    console.log("createqrcode called");
+    
+    swishQr({
+        amount: req.query.amount,
+        lock: ['number'],
+        message: 'Matfix betalning',
+        number: '0706910239'
+    }).then(result => {
+        var img = Buffer.from(result.replace('data:image/png;base64,', ''), 'base64')
+
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': img.length
+        });
+
+        res.end(img); 
+    });
+});
+
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
-app.listen(3000, () => console.log('Matfix backend listening on port 3000!'))
+app.listen(3030, () => console.log('Matfix backend listening on port 3030!'))

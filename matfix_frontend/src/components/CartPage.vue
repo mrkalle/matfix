@@ -7,19 +7,19 @@
           <cart-product v-bind:cart-product="cartProduct" v-bind:key="cartProduct.productId"></cart-product>
         </div>
         <p v-if="getCartProductsCount > 0">Totalsumma: {{ getCartTotal }}kr</p>
-        <md-button v-if="getCartProductsCount > 0" class="md-primary md-raised" @click="activePayDialog = true">Betala</md-button>
+        <md-button v-if="getCartProductsCount > 0" class="md-primary md-raised" @click="onPayButtonPressed">Betala</md-button>
       </div>
     </div>
     <div>
       <md-dialog
         :md-active.sync="activePayDialog" md-fullscreen="false">
 
-        <md-dialog-title>Betalning</md-dialog-title>
+        <md-dialog-title>Betala {{ getCartTotal }}kr</md-dialog-title>
         
         <md-dialog-content>
           <p>
             1. Scanna QR-koden med din mobil (om du är på din mobil ta en screenshot och öppna bilden i Swish-appen).
-            <img src="../../static/qr_test.png">
+            <img :src="qrCode" alt="The QR code"/>
           </p>
           <p>
             2. Betala med Swish.
@@ -42,13 +42,19 @@
 <script>
 
 import CartProduct from '@/components/CartProduct'
+import axios from 'axios'
 
 export default {
   name: 'CartPage',
   data: () => ({
-    activePayDialog: false
+    activePayDialog: false,
+    qrCode: null
   }),
   methods: {
+    onPayButtonPressed () {
+      this.activePayDialog = true;
+      this.qrCode = "http://localhost:3030/createqrcode?amount=" + this.getCartTotal;
+    },
     onConfirm () {
       this.activePayDialog = false;
       this.$store.commit("clearCart");
