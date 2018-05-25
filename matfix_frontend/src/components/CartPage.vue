@@ -19,8 +19,8 @@
         <md-dialog-content>
           <p>
             1. Scanna QR-koden med din mobil (om du är på din mobil ta en screenshot och öppna bilden i Swish-appen).
-            <img :src="qrCode" alt="The QR code"/>
           </p>
+          <img :src="qrCode" alt="The QR code"/>
           <p>
             2. Betala med Swish.
           </p>
