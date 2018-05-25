@@ -1,9 +1,9 @@
 const express = require('express')
-//var cors = require('cors')
+var cors = require('cors')
 const app = express()
 const swishQr = require('swish-qr');
 
-//app.use(cors())
+app.use(cors())
 
 app.get('/', (req,res) => {
 	console.log("root called");

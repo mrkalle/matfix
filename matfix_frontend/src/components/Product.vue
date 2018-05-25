@@ -29,7 +29,9 @@ export default {
   props: ['product'],
   methods: {
     addProductToCart: function () {
-      this.$store.commit('addProductToCart', this.product)
+      this.$store.commit('addProductToCart', this.product);
+      this.$store.commit('setShowSnackbar', true);
+      this.$store.dispatch('setHideSnackbar');
     }
   }
 }

@@ -15,7 +15,8 @@ Vue.use(VueMaterial)
 const store = new Vuex.Store({
   state: {
     products: [],
-    cartProducts: []
+    cartProducts: [],
+    showSnackbar: false
   },
   getters: {
     getCartProductsCount: (state) => {
@@ -57,11 +58,18 @@ const store = new Vuex.Store({
     },
     clearCart (state) {
       state.cartProducts.splice(0, state.cartProducts.length);
+    },
+    setShowSnackbar (state, value) {
+      state.showSnackbar = value;
     }
   },
   actions: {
 	  fetchProducts (state) {
-      axios.get('https://matfix.carllundin.se/products')
+      const ax = axios.create({
+        baseURL: 'http://localhost:3030'
+      });
+
+      ax.get('products')
       .then(response => {
         for (var i = 0; i < response.data.length; i++) {
           state.commit("addProductsToCart", response.data[i]);
@@ -71,7 +79,12 @@ const store = new Vuex.Store({
         debugger;
         console.error("fetchProducts, error: " + e);
       });
-	  }
+    },
+    setHideSnackbar ({ commit }) {
+      setTimeout(() => {
+        commit('setShowSnackbar', false)
+      }, 1500)
+    }
   }
 })
 
