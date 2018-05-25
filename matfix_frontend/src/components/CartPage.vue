@@ -53,7 +53,7 @@ export default {
   methods: {
     onPayButtonPressed () {
       this.activePayDialog = true;
-      this.qrCode = "http://localhost:3030/createqrcode?amount=" + this.getCartTotal;
+      this.qrCode = "https://matfix.carllundin.se/createqrcode?amount=" + this.getCartTotal;
     },
     onConfirm () {
       this.activePayDialog = false;

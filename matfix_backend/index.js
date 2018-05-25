@@ -23,6 +23,7 @@ app.get('/products', (req, res) => {
         {productId: 8, name: "Felix Coconut", price: 35, picUrl: "../static/felix_coconut_bean_curry.png"},
         {productId: 9, name: "Felix Soppa", price: 30, picUrl: "../static/felix_potatis_purjolok.png"}];
     res.json(data);
+});
 
 app.get('/createqrcode', (req, res) => {
     console.log("createqrcode called");
@@ -50,4 +51,4 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.listen(3030, () => { console.log('Matfix backend listening on port 3030!')});
+app.listen(3030, () => console.log('Matfix backend listening on port 3030!'))
