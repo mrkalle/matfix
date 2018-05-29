@@ -8,9 +8,18 @@ import Vuex from 'vuex'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
+import  VueAnalytics from 'vue-analytics'
+
+const isProd = process.env.NODE_ENV = 'production'
 
 Vue.use(Vuex)
 Vue.use(VueMaterial)
+Vue.use(VueAnalytics, {
+  id: 'UA-120034454-1',
+  debug: {
+    enabled: !isProd
+  }
+})
 
 const store = new Vuex.Store({
   state: {

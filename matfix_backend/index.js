@@ -12,16 +12,17 @@ app.get('/', (req,res) => {
 app.get('/products', (req, res) => {
     //console.log("products called");
     var data = 
-        [{productId: 0, name: "Cocacola", price: 10, picUrl: "../static/cocacola.png" },
-        {productId: 1, name: "Ramlösa", price: 10, picUrl: "../static/ramlosa.png"},
-        {productId: 2, name: "Fanta", price: 12, picUrl: "../static/fanta.png"},
-        {productId: 3, name: "Ahlgrens bilar", price: 20, picUrl: "../static/bilar.png"},
-        {productId: 4, name: "Geléhallon", price: 11, picUrl: "../static/gelehallon.png"},
-        {productId: 5, name: "Schweizernöt", price: 16, picUrl: "../static/schweizernot.png"},
+        [{productId: 0, name: "Cocacola", price: 15, picUrl: "../static/cocacola.png" },
+        {productId: 10, name: "Cocacola zero", price: 15, picUrl: "../static/cola_zero.png" },
+        {productId: 1, name: "Ramlösa", price: 15, picUrl: "../static/ramlosa.png"},
+        {productId: 2, name: "Billys Original", price: 12, picUrl: "../static/billys.png"},
+        {productId: 3, name: "Billys Hawaii", price: 20, picUrl: "../static/billys_hawaii.png"},
+        {productId: 4, name: "Marabou Choklad", price: 20, picUrl: "../static/marabou.png"},
+        {productId: 5, name: "Marabou Daim", price: 20, picUrl: "../static/marabou_daim.png"},
         {productId: 6, name: "Snickers", price: 10, picUrl: "../static/snickers.png"},
-        {productId: 7, name: "Felix Gulasch", price: 29, picUrl: "../static/felix_gulasch.png"},
-        {productId: 8, name: "Felix Coconut", price: 35, picUrl: "../static/felix_coconut_bean_curry.png"},
-        {productId: 9, name: "Felix Soppa", price: 30, picUrl: "../static/felix_potatis_purjolok.png"}];
+        {productId: 7, name: "Red Bull", price: 20, picUrl: "../static/redbull.png"},
+        {productId: 8, name: "Mentos", price: 10, picUrl: "../static/mentos.png"},
+        {productId: 9, name: "Läkerol", price: 10, picUrl: "../static/lakerol.png"}];
     res.json(data);
 });
 
@@ -32,7 +33,7 @@ app.get('/createqrcode', (req, res) => {
         amount: req.query.amount,
         lock: ['number'],
         message: 'Matfix betalning',
-        number: '0706910239'
+        number: '0701464670'
     }).then(result => {
         var img = Buffer.from(result.replace('data:image/png;base64,', ''), 'base64')
 

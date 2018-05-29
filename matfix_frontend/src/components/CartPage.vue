@@ -18,14 +18,14 @@
         
         <md-dialog-content>
           <p>
-            1. Scanna QR-koden med din mobil (om du är på din mobil ta en screenshot och öppna bilden i Swish-appen).
+            1. Scanna QR-koden med din mobil med Swish-appen. Om du är på din mobil ta en screenshot och öppna bilden i Swish-appen. Vill du inte scanna QR-koden så kan du skicka totalbeloppet till 070-1464670.
           </p>
           <img :src="qrCode" alt="The QR code"/>
           <p>
-            2. Betala med Swish.
+            2. Betala i Swish.
           </p>
           <p>
-            3. Tryck på 'Betalning klar'.
+            3. När betalningen är klar tryck på 'Betalning klar'-knappen.
           </p>
         </md-dialog-content>
 
@@ -53,14 +53,24 @@ export default {
   methods: {
     onPayButtonPressed () {
       this.activePayDialog = true;
-      this.qrCode = "https://matfix.carllundin.se/createqrcode?amount=" + this.getCartTotal;
+      this.qrCode = "https://matfix.carllundin.se/createqrcode?amount=" + this.getCartTotal;   
     },
     onConfirm () {
       this.activePayDialog = false;
       this.$store.commit("clearCart");
+      
+      this.$ga.event({
+        eventCategory: 'paymentConfirmed',
+        eventAction: 'click'
+      })
     },
     onCancel () {
       this.activePayDialog = false;
+      
+      this.$ga.event({
+        eventCategory: 'paymentCanceled',
+        eventAction: 'click'
+      })
     }
   },
   computed: {

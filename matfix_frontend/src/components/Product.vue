@@ -32,6 +32,11 @@ export default {
       this.$store.commit('addProductToCart', this.product);
       this.$store.commit('setShowSnackbar', true);
       this.$store.dispatch('setHideSnackbar');
+
+      this.$ga.event({
+        eventCategory: this.product.name,
+        eventAction: 'add'
+      })
     }
   }
 }
