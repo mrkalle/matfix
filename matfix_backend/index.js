@@ -20,7 +20,8 @@ app.get('/products', (req, res) => {
         {productId: 4, name: "Marabou Choklad", price: 20, picUrl: "../static/marabou.png"},
         {productId: 5, name: "Marabou Daim", price: 20, picUrl: "../static/marabou_daim.png"},
         {productId: 6, name: "Snickers", price: 10, picUrl: "../static/snickers.png"},
-        {productId: 7, name: "Red Bull", price: 20, picUrl: "../static/redbull.png"},
+        {productId: 7, name: "Red Bull", price: 25, picUrl: "../static/redbull.png"},
+        {productId: 11, name: "Powerking Energy", price: 15, picUrl: "../static/powerking.png"},
         {productId: 8, name: "Mentos", price: 10, picUrl: "../static/mentos.png"},
         {productId: 9, name: "Läkerol", price: 10, picUrl: "../static/lakerol.png"}];
     res.json(data);
