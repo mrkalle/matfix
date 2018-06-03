@@ -10,7 +10,7 @@ import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import  VueAnalytics from 'vue-analytics'
 
-const isProd = process.env.NODE_ENV = 'production'
+const isProd = process.env.NODE_ENV == "production"
 
 Vue.use(Vuex)
 Vue.use(VueMaterial)
@@ -75,7 +75,7 @@ const store = new Vuex.Store({
   actions: {
 	  fetchProducts (state) {
       const ax = axios.create({
-        baseURL: 'http://localhost:3030'
+        baseURL: 'https://matfix.carllundin.se'
       });
 
       ax.get('products')
