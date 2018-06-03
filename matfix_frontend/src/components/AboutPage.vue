@@ -4,7 +4,7 @@
       Hej! Vad kul att du hittat till Matfix-appen! 
     </p>
     <p>
-      Matfix är en egenutvecklad lösning för att ersätta det tidigare Selecta-systemet. Nuvarande sida är en proof-of-concept för att se om tjänsten håller. Kom gärna med förslag och förbättringar i sidan och sortimentet!
+      Matfix är en egenutvecklad lösning för att ersätta det tidigare Selecta-systemet. Nuvarande sida är en proof-of-concept för att se om tjänsten håller. Maila gärna med förslag och förbättringar i sidan och sortimentet till <a href="mailto:carl.a.j.lundin@gmail.com?subject=Matfix förslag">carl.a.j.lundin@gmail.com</a>!
     </p>
     <p>
       Hoppas att Matfix funkar för dig, önskar Carl och Victoria!
@@ -17,6 +17,7 @@
 export default {
   name: 'AboutPage'
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
