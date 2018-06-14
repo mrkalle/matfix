@@ -75,7 +75,7 @@ const store = new Vuex.Store({
   actions: {
 	  fetchProducts (state) {
       const ax = axios.create({
-        baseURL: 'https://matfix.carllundin.se'
+        baseURL: 'https://matfix.nu'
       });
 
       ax.get('products')
