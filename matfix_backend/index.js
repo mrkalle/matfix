@@ -17,6 +17,7 @@ app.get('/products', (req, res) => {
         {productId: 1, name: "Ramlösa", price: 15, picUrl: "../static/ramlosa.png"},
         {productId: 2, name: "Billys Original", price: 20, picUrl: "../static/billys.png"},
         {productId: 3, name: "Billys Hawaii", price: 20, picUrl: "../static/billys_hawaii.png"},
+        {productId: 12, name: "Kexchoklad", price: 10, picUrl: "../static/kexchoklad.png"},
         {productId: 4, name: "Marabou Choklad", price: 20, picUrl: "../static/marabou.png"},
         {productId: 5, name: "Marabou Daim", price: 20, picUrl: "../static/marabou_daim.png"},
         {productId: 6, name: "Snickers", price: 10, picUrl: "../static/snickers.png"},
