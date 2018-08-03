@@ -24,25 +24,14 @@ export default {
     getProducts () {
       return this.$store.state.products;
     },
-    showSnackbar () {
-      return this.$store.state.showSnackbar;
+    showSnackbar : {
+      get: function () {
+        return this.$store.state.showSnackbar;
+      },
+      set: function(val) {
+      }
     }
   },
-  // method: {
-  //   showSnackbar () {
-  //     debugger;
-  //   }
-  // },
-  // transitions: {
-  //   'ui-snackbar-toggle': {
-  //     afterEnter() {
-  //         console.log('entered');
-  //     },      
-  //     afterLeave() {
-  //         console.log('left');
-  //     }
-  //   }
-  // },
   components: {Product}
 }
 </script>

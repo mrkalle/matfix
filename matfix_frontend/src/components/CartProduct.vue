@@ -16,9 +16,12 @@
       </md-card-content>
 
       <md-card-actions>
-        <!--<md-button class="md-icon-button" v-on:click="addProductToCart" >
+        <md-button class="md-icon-button" v-on:click="decreaseProductInCart" >
+          <md-icon>remove</md-icon>
+        </md-button>
+        <md-button class="md-icon-button" v-on:click="increaseProductInCart" >
           <md-icon>add</md-icon>
-        </md-button>-->
+        </md-button>
       </md-card-actions>
     </md-card>
   </div>
@@ -31,6 +34,14 @@ export default {
   computed: {
     getCartProductPrice () {
       return this.$store.getters.getCartProductPrice(this.cartProduct.productId);
+    }
+  },
+  methods: {
+    increaseProductInCart: function () {
+      this.$store.commit('increaseProductCountInCart', this.cartProduct.productId);
+    },
+    decreaseProductInCart: function () {
+      this.$store.commit('decreaseProductCountInCart', this.cartProduct.productId);
     }
   }
 }

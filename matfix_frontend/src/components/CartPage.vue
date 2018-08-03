@@ -7,12 +7,13 @@
           <cart-product v-bind:cart-product="cartProduct" v-bind:key="cartProduct.productId"></cart-product>
         </div>
         <p v-if="getCartProductsCount > 0">Totalsumma: {{ getCartTotal }}kr</p>
+        <md-button v-if="getCartProductsCount > 0" class="md-secondary md-raised" @click="onClearCartButtonPressed">Töm varukorg</md-button>
         <md-button v-if="getCartProductsCount > 0" class="md-primary md-raised" @click="onPayButtonPressed">Betala</md-button>
       </div>
     </div>
     <div>
       <md-dialog
-        :md-active.sync="activePayDialog" md-fullscreen="false">
+        :md-active.sync="activePayDialog">
 
         <md-dialog-title>Betala {{ getCartTotal }}kr</md-dialog-title>
         
@@ -51,13 +52,26 @@ export default {
     qrCode: null
   }),
   methods: {
+    onClearCartButtonPressed () {
+      this.$store.commit("clearCart");
+      this.$store.commit("setCurrentTab", "tab-products-page");
+      
+      this.$ga.event({
+        eventCategory: 'clearCart',
+        eventAction: 'click'
+      })
+    },
     onPayButtonPressed () {
       this.activePayDialog = true;
+
       this.qrCode = "https://matfix.nu/createqrcode?amount=" + this.getCartTotal;   
+      //this.qrCode = "http://localhost:3030/createqrcode?amount=" + this.getCartTotal;   
     },
     onConfirm () {
       this.activePayDialog = false;
+
       this.$store.commit("clearCart");
+      this.$store.commit("setCurrentTab", "tab-products-page");
       
       this.$ga.event({
         eventCategory: 'paymentConfirmed',

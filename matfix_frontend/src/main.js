@@ -23,11 +23,15 @@ Vue.use(VueAnalytics, {
 
 const store = new Vuex.Store({
   state: {
+    currentTab: null,
     products: [],
     cartProducts: [],
     showSnackbar: false
   },
   getters: {
+    getCurrentTab: (state) => {
+      return state.currentTab;
+    },
     getCartProductsCount: (state) => {
       return state.cartProducts.length;
     },
@@ -48,7 +52,10 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
-    addProductToCart (state, payload) {
+    setCurrentTab(state, value) {
+      state.currentTab = value;
+    },
+    addProductToCart(state, payload) {
       var existingCartProducts = state.cartProducts.filter(x => x.productId === payload.productId);
       if (existingCartProducts.length === 0) {
         state.cartProducts.push({ 
@@ -58,10 +65,29 @@ const store = new Vuex.Store({
           picUrl: payload.picUrl,
           nr: 1 });
       } else {
+        this.increaseProductCountInCart(state, payload.productId);
+      }
+    },
+    increaseProductCountInCart(state, productId) {
+      var existingCartProducts = state.cartProducts.filter(x => x.productId === productId);
+      if (existingCartProducts.length > 0) {
         Vue.set(existingCartProducts[0], 'nr', existingCartProducts[0].nr + 1)
       }
     },
-    addProductsToCart(state, payload) {
+    decreaseProductCountInCart(state, productId) {
+      var existingCartProducts = state.cartProducts.filter(x => x.productId === productId);
+      if (existingCartProducts.length > 0) {
+        if (existingCartProducts[0].nr > 1) {
+          Vue.set(existingCartProducts[0], 'nr', existingCartProducts[0].nr - 1);
+        } else {
+          var index = state.cartProducts.indexOf(existingCartProducts[0]);
+          if (index !== -1) { 
+            array.splice(index, 1);
+          }
+        }
+      }
+    },
+    addProducts(state, payload) {
       var dataObj = {productId: payload.productId, name: payload.name, price: payload.price, picUrl: payload.picUrl};
       state.products.push(dataObj);
     },
@@ -76,12 +102,13 @@ const store = new Vuex.Store({
 	  fetchProducts (state) {
       const ax = axios.create({
         baseURL: 'https://matfix.nu'
+        //baseURL: 'http://localhost:3030'
       });
 
       ax.get('products')
       .then(response => {
         for (var i = 0; i < response.data.length; i++) {
-          state.commit("addProductsToCart", response.data[i]);
+          state.commit("addProducts", response.data[i]);
         }
       })
       .catch(e => {
