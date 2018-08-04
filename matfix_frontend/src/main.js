@@ -65,7 +65,7 @@ const store = new Vuex.Store({
           picUrl: payload.picUrl,
           nr: 1 });
       } else {
-        this.increaseProductCountInCart(state, payload.productId);
+        Vue.set(existingCartProducts[0], 'nr', existingCartProducts[0].nr + 1)
       }
     },
     increaseProductCountInCart(state, productId) {
@@ -82,7 +82,7 @@ const store = new Vuex.Store({
         } else {
           var index = state.cartProducts.indexOf(existingCartProducts[0]);
           if (index !== -1) { 
-            array.splice(index, 1);
+            state.cartProducts.splice(index, 1);
           }
         }
       }

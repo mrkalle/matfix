@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <md-tabs class="md-primary" md-alignment="centered">
+    <md-tabs class="md-primary" md-alignment="centered" :md-active-tab="currentTab">
       <template slot="md-tab" slot-scope="{ tab }">
         {{ tab.label }} <i class="badge" v-if="tab.data.badge">{{ tab.data.badge }}</i>
       </template>
@@ -29,6 +29,9 @@ export default {
   computed: {
     cartProducts () {
       return this.$store.getters.getAllCartProductsCount;
+    },
+    currentTab () {
+      return this.$store.getters.getCurrentTab;
     }
   }
 }
