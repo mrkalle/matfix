@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <md-tabs class="md-primary" md-alignment="centered" :md-active-tab="currentTab">
+    <md-tabs class="md-primary" md-alignment="centered" :md-active-tab=currentTab @md-changed="currentTabChanged">
       <template slot="md-tab" slot-scope="{ tab }">
         {{ tab.label }} <i class="badge" v-if="tab.data.badge">{{ tab.data.badge }}</i>
       </template>
@@ -32,6 +32,11 @@ export default {
     },
     currentTab () {
       return this.$store.getters.getCurrentTab;
+    }
+  },
+  methods: {
+    currentTabChanged (tabId) {
+      this.$store.commit("setCurrentTab", tabId);
     }
   }
 }

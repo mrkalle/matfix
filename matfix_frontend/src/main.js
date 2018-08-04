@@ -23,7 +23,7 @@ Vue.use(VueAnalytics, {
 
 const store = new Vuex.Store({
   state: {
-    currentTab: null,
+    currentTab: "tab-products-page",
     products: [],
     cartProducts: [],
     showSnackbar: false
